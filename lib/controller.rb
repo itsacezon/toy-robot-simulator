@@ -1,11 +1,11 @@
-class Parser
+class Controller
   attr_accessor :actions
 
   def initialize(actions = [])
     @actions = actions
   end
 
-  def read_command(string)
+  def parse_command(string)
     case string
     when /\APLACE (\S, ?)(\S, ?)([^,]+)\z/
     when /\AMOVE\z/
