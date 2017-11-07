@@ -5,4 +5,8 @@ class Direction
     @name = name
     @delta_x, @delta_y = delta
   end
+
+  def rotate
+
+  end
 end

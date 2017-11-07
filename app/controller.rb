@@ -1,12 +1,12 @@
 class Controller
-  attr_accessor :robot, :table
+  attr_reader :robot, :table
 
   def initialize(params)
     @robot = params.fetch(:robot)
     @table = params.fetch(:table)
   end
 
-  def get_action(command)
+  def execute_action(command)
     case command
     when /\APLACE (\S, ?)(\S, ?)([^,]+)\z/
     when /\AMOVE\z/
@@ -14,5 +14,13 @@ class Controller
     when /\ARIGHT\z/
     when /\AREPORT\z/
     end
+  end
+
+  def move
+    delta_x, delta_y = robot.direction.delta
+  end
+
+  def report
+    puts "Output: #{robot.x},#{robot.y},#{robot.direction.name}"
   end
 end

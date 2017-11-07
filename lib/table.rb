@@ -1,10 +1,10 @@
 class Table
-  attr_accessor :entities, :height, :width
+  attr_reader :entities, :height, :width
 
   def initialize(params)
     @height = params.fetch(:height, 0)
     @width = params.fetch(:width, 0)
-    @entities = []
+    clear_entities
   end
 
   def add_entity(entity)
@@ -12,7 +12,11 @@ class Table
   end
 
   def remove_entity(entity)
-    @entiries.delete(entity)
+    @entities.delete(entity)
+  end
+
+  def clear_entities
+    @entities = []
   end
 
   def within_bounds?(x, y)
