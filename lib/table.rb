@@ -7,11 +7,15 @@ class Table
     @entities = []
   end
 
-  def place_entity(entity)
+  def add_entity(entity)
+    @entities << entity
   end
 
-  def within_bounds?(entity)
-    x, y = entity.x, entity.y
+  def remove_entity(entity)
+    @entiries.delete(entity)
+  end
+
+  def within_bounds?(x, y)
     x >= 0 && x < @width && y >= 0 && y <= @height
   end
 end

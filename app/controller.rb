@@ -1,12 +1,13 @@
 class Controller
-  attr_accessor :actions
+  attr_accessor :robot, :table
 
-  def initialize(actions = [])
-    @actions = actions
+  def initialize(params)
+    @robot = params.fetch(:robot)
+    @table = params.fetch(:table)
   end
 
-  def parse_command(string)
-    case string
+  def get_action(command)
+    case command
     when /\APLACE (\S, ?)(\S, ?)([^,]+)\z/
     when /\AMOVE\z/
     when /\ALEFT\z/
