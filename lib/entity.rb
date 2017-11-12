@@ -6,4 +6,8 @@ class Entity
     @y = params.fetch(:y, 0)
     @direction = params.fetch(:direction, nil)
   end
+
+  def move(table)
+    raise NotImplementedError, "You must implement the move method"
+  end
 end

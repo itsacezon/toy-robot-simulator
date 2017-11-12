@@ -7,19 +7,25 @@ class Table
     clear_entities
   end
 
-  def add_entity(entity)
-    @entities << entity
-  end
-
-  def remove_entity(entity)
-    @entities.delete(entity)
-  end
-
   def clear_entities
     @entities = []
   end
 
+  def find_entity(x, y)
+    entities.find { |entity| entity.x == x && entity.y == y }
+  end
+
+  def place_entity(entity)
+    unless find_entity(entity.x, entity.y)
+      entities << entity
+    end
+  end
+
+  def remove_entity(entity)
+    entities.delete(entity)
+  end
+
   def within_bounds?(x, y)
-    x >= 0 && x < @width && y >= 0 && y <= @height
+    x >= 0 && x < width && y >= 0 && y <= height
   end
 end

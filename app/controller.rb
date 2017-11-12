@@ -8,7 +8,7 @@ class Controller
 
   def execute_action(command)
     case command
-    when /\APLACE (\S, ?)(\S, ?)([^,]+)\z/
+    when /\APLACE (\d+, ?)(\d+, ?)([^,]+)\z/
     when /\AMOVE\z/
     when /\ALEFT\z/
     when /\ARIGHT\z/
