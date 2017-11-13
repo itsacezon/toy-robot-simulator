@@ -1,3 +1,8 @@
 #!/usr/bin/env ruby
 
 $: << File.expand_path('../../', __FILE__)
+
+require "app/simulator"
+
+simulator = Simulator.new
+simulator.start

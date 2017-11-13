@@ -1,7 +1,7 @@
 class Entity
   attr_accessor :x, :y, :direction
 
-  def initialize(direction:, x: 0, y: 0)
+  def initialize(direction: Direction.new, x: 0, y: 0)
     @x = x
     @y = y
     @direction = direction

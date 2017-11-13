@@ -9,7 +9,10 @@ require "app/commands/left_command"
 require "app/commands/report_command"
 
 class Simulator
-  def initialize
+  attr_reader :controller, :table, :robot
+
+  def initialize(input: ARGF)
+    @input = input
     @controller = Controller.new
     @directions = Directions.new
     @robot = Robot.new
@@ -17,25 +20,26 @@ class Simulator
   end
 
   def start
-    params = {
-      directions: @directions,
-      robot: @robot,
-      table: @table
-    }
+    @input.each_line do |line|
+      sanitised_input = line.gsub(",", " ").strip
 
-    $stdin.each_line do |line|
-      sanitized_input = line.gsub(",", " ").strip
-      case sanitized_input
-      when /\APLACE /
-        @controller.execute(PlaceCommand.new(params))
-      when /\AMOVE\z/
-        @controller.execute(MoveCommand.new(params))
-      when /\ALEFT\z/
-        @controller.execute(LeftCommand.new(params))
-      when /\ARIGHT\z/
-        @controller.execute(RightCommand.new(params))
-      when /\AREPORT\z/
-        @controller.execute(ReportCommand.new(params))
+      command =
+        case sanitised_input
+        when /\APLACE (\d+) (\d+) (\S+)\z/ then PlaceCommand
+        when /\AMOVE\z/ then MoveCommand
+        when /\ALEFT\z/ then LeftCommand
+        when /\ARIGHT\z/ then RightCommand
+        when /\AREPORT\z/ then ReportCommand
+        end
+
+      if command
+        params = {
+          directions: @directions,
+          robot: @robot,
+          table: @table,
+          options: sanitised_input.split(" ")
+        }
+        controller.execute(command.new(params))
       end
     end
   end
