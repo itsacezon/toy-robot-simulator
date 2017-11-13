@@ -1,5 +1,28 @@
 # Toy Robot Simulator
 
+## Requirements
+- `ruby => 2.4.2`
+
+## Usage
+1. Install the dependencies by running `bundle install`
+2. Running the application:
+  - For manual input: `./bin/app`
+  - For text input (see `test.txt` for sample): `./bin/app < test.txt`
+  - If you encounter a problem, try running `chmod 755 ./bin/app` first.
+3. If you want to run the tests, run `bundle exec rspec`
+
+## Example
+```
+PLACE 1,2,EAST
+MOVE
+MOVE
+LEFT
+MOVE
+REPORT
+```
+
+should have the output `Output: 3,3,NORTH`
+
 ## Description
 - The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units by 5 units.
 - There are no other obstructions on the table surface.
