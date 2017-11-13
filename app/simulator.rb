@@ -1,9 +1,10 @@
-require "lib/table"
 require "app/controller"
 require "app/directions"
 require "app/robot"
+require "app/table"
 
 require "app/commands/place_command"
+require "app/commands/move_command"
 
 class Simulator
   def initialize
@@ -15,10 +16,12 @@ class Simulator
 
   def start
     $stdin.each_line do |line|
-      case line.strip
-      when /\APLACE (\d+, ?)(\d+, ?)([^,]+)\z/
+      sanitized_input = line.gsub(",", " ").strip
+      case sanitized_input
+      when /\APLACE /
         @controller.execute(PlaceCommand.new(robot: @robot, table: @table))
       when /\AMOVE\z/
+        @controller.execute(MoveCommand.new(robot: @robot, table: @table))
       when /\ALEFT\z/
       when /\ARIGHT\z/
       when /\AREPORT\z/

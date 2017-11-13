@@ -7,11 +7,11 @@ class Entity
     @direction = direction
   end
 
-  def move(table)
+  def move(surface)
     raise NotImplementedError, "You must implement the move method"
   end
 
-  def rotate(table, directions, to)
+  def rotate(surface, directions, to)
     raise NotImplementedError, "You must implement the rotate method"
   end
 end

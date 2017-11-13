@@ -1,4 +1,4 @@
-require "lib/table"
+require "app/table"
 require "app/directions"
 require "app/robot"
 

@@ -10,10 +10,6 @@ class Controller
     @commands.push(command)
   end
 
-  def move
-    robot.move(table)
-  end
-
   def rotate_left
     robot.rotate(table, directions, :west)
   end
