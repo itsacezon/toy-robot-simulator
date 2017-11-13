@@ -1,9 +1,9 @@
 class Table
   attr_reader :entities, :height, :width
 
-  def initialize(params)
-    @height = params.fetch(:height, 0)
-    @width = params.fetch(:width, 0)
+  def initialize(height: 0, width: 0)
+    @height = height
+    @width = width
     clear_entities
   end
 

@@ -1,7 +1,7 @@
 class Direction
   attr_accessor :name, :delta_x, :delta_y
 
-  def initialize(name, delta)
+  def initialize(name: :dir, delta: [0, 0])
     @name = name
     @delta_x, @delta_y = delta
   end

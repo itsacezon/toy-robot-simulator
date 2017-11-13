@@ -3,10 +3,10 @@ require "lib/direction"
 class Directions
   def all
     @all ||= [
-      Direction.new(:west, [-1, 0]),
-      Direction.new(:north, [0, 1]),
-      Direction.new(:east, [0, 1]),
-      Direction.new(:south, [0, -1])
+      Direction.new(name: :west, delta: [-1, 0]),
+      Direction.new(name: :north, delta: [0, 1]),
+      Direction.new(name: :east, delta: [1, 0]),
+      Direction.new(name: :south, delta: [0, -1])
     ]
   end
 

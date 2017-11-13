@@ -1,7 +1,8 @@
 class Controller
-  attr_reader :robot, :table
+  attr_reader :directions, :robot, :table
 
   def initialize(params)
+    @directions = params.fetch(:directions)
     @robot = params.fetch(:robot)
     @table = params.fetch(:table)
   end
@@ -24,7 +25,16 @@ class Controller
     robot.move(table)
   end
 
+  def rotate_left
+    robot.rotate(table, directions, :west)
+  end
+
+  def rotate_right
+
+  end
+
   def report
-    puts "Output: #{robot.x},#{robot.y},#{robot.direction.name}"
+    direction_name = robot.direction.name.to_s.upcase
+    puts "Output: #{robot.x},#{robot.y},#{direction_name}"
   end
 end

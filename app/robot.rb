@@ -7,9 +7,9 @@ class Robot < Entity
     @y += direction.delta_y
   end
 
-  def rotate(table, directions, to)
+  def rotate(table, directions, to_name)
     return unless table.find_entity(@x, @y)
-    return unless directions.find_by_name(to.name)
-    @direction = to
+    to_direction = directions.find_by_name(to_name)
+    @direction = to_direction if to_direction
   end
 end

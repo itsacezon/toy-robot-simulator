@@ -10,6 +10,14 @@ RSpec.describe Robot do
     let(:north) { directions.find_by_name(:north) }
     let(:robot) { Robot.new(x: 1, y: 1, direction: north) }
 
+    context "robot is not placed in the table" do
+      it "does not move the robot" do
+        expect { robot.move(table) }
+          .to change { robot.x }.by(0)
+          .and change { robot.y }.by(0)
+      end
+    end
+
     context "robot is placed in the table" do
       before { table.place_entity(robot) }
 
@@ -18,13 +26,11 @@ RSpec.describe Robot do
           .to change { robot.y }.by(1)
           .and change { robot.x }.by(0)
       end
-    end
 
-    context "robot is not placed in the table" do
-      it "does not move the robot" do
-        expect { robot.move(table) }
-          .to change { robot.x }.by(0)
-          .and change { robot.y }.by(0)
+      it "updates the table entity" do
+        orig_x, orig_y = robot.x, robot.y
+        robot.move(table)
+        expect(table.find_entity(orig_x, orig_y + 1)).to eq(robot)
       end
     end
   end
@@ -36,22 +42,25 @@ RSpec.describe Robot do
 
     before { table.place_entity(robot) }
 
-    context "valid direction" do
-      let(:south) { directions.find_by_name(:south) }
-
-      it "changes the robot's direction" do
-        expect { robot.rotate(table, directions, south) }
-          .to change { robot.direction.name }.from(:north).to(:south)
-          .and change { robot.direction.delta_y }.from(1).to(-1)
+    context "invalid direction" do
+      it "does not change the robot's direction" do
+        expect { robot.rotate(table, directions, :northwest) }
+          .not_to change { robot.direction.name }
       end
     end
 
-    context "invalid direction" do
-      let(:northwest) { Direction.new(:northwest, [-1, 1]) }
+    context "valid direction" do
+      it "changes the robot's direction" do
+        expect { robot.rotate(table, directions, :south) }
+          .to change { robot.direction.name }.from(:north).to(:south)
+          .and change { robot.direction.delta_y }.from(1).to(-1)
+      end
 
-      it "does not change the robot's direction" do
-        expect { robot.rotate(table, directions, northwest) }
-          .not_to change { robot.direction.name }
+      it "updates the table entity" do
+        orig_direction = robot.direction
+        robot.rotate(table, directions, :south)
+        expect(table.find_entity(robot.x, robot.y).direction)
+          .not_to eq(orig_direction)
       end
     end
   end

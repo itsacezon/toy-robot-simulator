@@ -1,10 +1,10 @@
 class Entity
   attr_accessor :x, :y, :direction
 
-  def initialize(params)
-    @x = params.fetch(:x, 0)
-    @y = params.fetch(:y, 0)
-    @direction = params.fetch(:direction, nil)
+  def initialize(direction:, x: 0, y: 0)
+    @x = x
+    @y = y
+    @direction = direction
   end
 
   def move(table)

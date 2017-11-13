@@ -1,9 +1,10 @@
-require "lib/direction"
 require "lib/table"
+require "app/command_log"
+require "app/directions"
 require "app/robot"
 
 class Simulator
-  def initialize
+  def initialize(robot: Robot.new)
     @robot = Robot.new
     @table = Table.new(height: 5, width: 5)
     @directions = [

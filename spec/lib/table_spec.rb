@@ -1,10 +1,13 @@
 require "lib/table"
 require "lib/entity"
+require "lib/direction"
 
 RSpec.describe Table do
+  let(:direction) { Direction.new(name: :north, delta: [0, 1]) }
+
   describe "#place_entity" do
     let(:table) { Table.new(height: 5, width: 5) }
-    let(:entity) { Entity.new(x: 0, y: 0) }
+    let(:entity) { Entity.new(x: 0, y: 0, direction: direction) }
 
     context "no existing entity in coordinates" do
       it "adds the entity" do
@@ -27,7 +30,7 @@ RSpec.describe Table do
 
   describe "#remove_entity" do
     let(:table) { Table.new(height: 5, width: 5) }
-    let(:entity) { Entity.new(x: 0, y: 0) }
+    let(:entity) { Entity.new(x: 0, y: 0, direction: direction) }
 
     before do
       table.place_entity(entity)
