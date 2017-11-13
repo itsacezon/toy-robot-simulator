@@ -54,3 +54,7 @@ A robot that is not on the table can choose to ignore the `MOVE`, `LEFT`, `RIGHT
 - If you want to add obstructions, create a class that extends `Entity` and remember to place them in the `Table`.
 - You can also customise or create a new table type by extending the `Surface` class.
 - To add more directions (e.g., `NORTHEAST`, `SOUTHWEST`, etc.), add a new `Direction` object in the `Directions` class then adapt it to your commands. In this case, the `LeftCommand` and `RightCommand` classes should be updated.
+- This application applies the Command pattern, so you can also add your custom commands. To do this: extend the `Command` class, add the logic for the command, then include a parser in the `Simulator` so the app can recognise the new command.
+
+## License
+See the [LICENSE](LICENSE.md) file for license rights and limiations (MIT).
