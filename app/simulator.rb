@@ -4,18 +4,17 @@ require "app/directions"
 require "app/robot"
 
 class Simulator
-  def initialize(robot: Robot.new)
-    @robot = Robot.new
-    @table = Table.new(height: 5, width: 5)
-    @directions = [
-
-    ]
+  def initialize
+    @controller = Controller.new(
+      robot: Robot.new,
+      table: Table.new(height: 5, width: 5),
+      directions: Directions.new
+    )
   end
 
   def start
-    controller = Controller.new(@robot, @table)
-    $stdin.each_line { |command|
-      controller.execute_action(command.strip)
+    $stdin.each_line { |line|
+      @controller.execute_command(line.strip)
     }
   end
 end

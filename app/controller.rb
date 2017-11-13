@@ -1,10 +1,11 @@
 class Controller
-  attr_reader :directions, :robot, :table
+  attr_reader :commands
 
-  def initialize(params)
+  def initialize()
     @directions = params.fetch(:directions)
     @robot = params.fetch(:robot)
     @table = params.fetch(:table)
+    @commands = []
   end
 
   def execute_action(command)
