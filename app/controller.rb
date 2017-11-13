@@ -16,8 +16,12 @@ class Controller
     end
   end
 
+  def place
+    table.place_entity(robot)
+  end
+
   def move
-    delta_x, delta_y = robot.direction.delta
+    robot.move(table)
   end
 
   def report

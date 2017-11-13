@@ -16,9 +16,7 @@ class Table
   end
 
   def place_entity(entity)
-    unless find_entity(entity.x, entity.y)
-      entities << entity
-    end
+    entities.push(entity) unless find_entity(entity.x, entity.y)
   end
 
   def remove_entity(entity)

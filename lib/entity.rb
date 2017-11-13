@@ -10,4 +10,8 @@ class Entity
   def move(table)
     raise NotImplementedError, "You must implement the move method"
   end
+
+  def rotate(table, direction)
+    raise NotImplementedError, "You must implement the rotate method"
+  end
 end
