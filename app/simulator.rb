@@ -5,6 +5,7 @@ require "app/table"
 
 require "app/commands/place_command"
 require "app/commands/move_command"
+require "app/commands/left_command"
 require "app/commands/report_command"
 
 class Simulator
@@ -16,17 +17,25 @@ class Simulator
   end
 
   def start
+    params = {
+      directions: @directions,
+      robot: @robot,
+      table: @table
+    }
+
     $stdin.each_line do |line|
       sanitized_input = line.gsub(",", " ").strip
       case sanitized_input
       when /\APLACE /
-        @controller.execute(PlaceCommand.new(robot: @robot, table: @table))
+        @controller.execute(PlaceCommand.new(params))
       when /\AMOVE\z/
-        @controller.execute(MoveCommand.new(robot: @robot, table: @table))
+        @controller.execute(MoveCommand.new(params))
       when /\ALEFT\z/
+        @controller.execute(LeftCommand.new(params))
       when /\ARIGHT\z/
+        @controller.execute(RightCommand.new(params))
       when /\AREPORT\z/
-        @controller.execute(ReportCommand.new(robot: @robot, table: @table))
+        @controller.execute(ReportCommand.new(params))
       end
     end
   end

@@ -1,9 +1,8 @@
-require "app/robot"
-
 class Command
-  attr_reader :robot, :table
+  attr_reader :directions, :robot, :table
 
-  def initialize(robot:, table:)
+  def initialize(directions: Directions.new, robot:, table:)
+    @directions = directions
     @robot = robot
     @table = table
   end
