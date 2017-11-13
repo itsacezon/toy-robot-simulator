@@ -49,3 +49,8 @@ A robot that is not on the table can choose to ignore the `MOVE`, `LEFT`, `RIGHT
 ## Constraints
 - The toy robot must not fall off the table during the movement. This also includes the initial placement of the toy robot.
 - Any move that would cause the robot to fall must be ignored.
+
+## Extending the application
+- If you want to add obstructions, create a class that extends `Entity` and remember to place them in the `Table`.
+- You can also customise or create a new table type by extending the `Surface` class.
+- To add more directions (e.g., `NORTHEAST`, `SOUTHWEST`, etc.), add a new `Direction` object in the `Directions` class then adapt it to your commands. In this case, the `LeftCommand` and `RightCommand` classes should be updated.
