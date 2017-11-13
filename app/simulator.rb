@@ -6,6 +6,7 @@ require "app/table"
 require "app/commands/place_command"
 require "app/commands/move_command"
 require "app/commands/left_command"
+require "app/commands/right_command"
 require "app/commands/report_command"
 
 class Simulator
