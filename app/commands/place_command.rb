@@ -2,19 +2,23 @@ require "app/commands/command"
 
 class PlaceCommand < Command
   def execute
-    if place_options
-      @robot.x = place_options[:x]
-      @robot.y = place_options[:y]
-      @robot.direction = place_options[:direction]
-    end
+    x, y, direction =
+      if place_options
+        [place_options[:x], place_options[:y], place_options[:direction]]
+      else
+        [robot.x, robot.y, robot.direction]
+      end
 
-    x, y = robot.x, robot.y
     return unless table.within_bounds?(x, y)
 
     existing_robot = table.find_robot
     if existing_robot
       table.remove_entity(existing_robot)
     end
+
+    @robot.x = x
+    @robot.y = y
+    @robot.direction = direction
 
     table.place_entity(robot)
   end
