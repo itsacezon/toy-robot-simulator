@@ -5,6 +5,7 @@ require "app/table"
 
 require "app/commands/place_command"
 require "app/commands/move_command"
+require "app/commands/report_command"
 
 class Simulator
   def initialize
@@ -25,6 +26,7 @@ class Simulator
       when /\ALEFT\z/
       when /\ARIGHT\z/
       when /\AREPORT\z/
+        @controller.execute(ReportCommand.new(robot: @robot, table: @table))
       end
     end
   end

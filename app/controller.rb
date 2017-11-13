@@ -9,17 +9,4 @@ class Controller
     command.execute
     @commands.push(command)
   end
-
-  def rotate_left
-    robot.rotate(table, directions, :west)
-  end
-
-  def rotate_right
-
-  end
-
-  def report
-    direction_name = robot.direction.name.to_s.upcase
-    puts "Output: #{robot.x},#{robot.y},#{direction_name}"
-  end
 end
