@@ -28,9 +28,9 @@ RSpec.describe Robot do
       end
 
       it "updates the table entity" do
-        orig_x, orig_y = robot.x, robot.y
+        orig_robot = robot.dup
         robot.move(table)
-        expect(table.find_entity(orig_x, orig_y + 1)).to eq(robot)
+        expect(table.find_entity(orig_robot)).not_to eq(robot)
       end
     end
   end
@@ -57,10 +57,9 @@ RSpec.describe Robot do
       end
 
       it "updates the table entity" do
-        orig_direction = robot.direction
+        orig_robot = robot.dup
         robot.rotate(table, directions, :south)
-        expect(table.find_entity(robot.x, robot.y).direction)
-          .not_to eq(orig_direction)
+        expect(table.find_entity(robot)).not_to eq(orig_robot)
       end
     end
   end

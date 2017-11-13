@@ -1,25 +1,13 @@
 class Controller
   attr_reader :commands
 
-  def initialize()
-    @directions = params.fetch(:directions)
-    @robot = params.fetch(:robot)
-    @table = params.fetch(:table)
+  def initialize
     @commands = []
   end
 
-  def execute_action(command)
-    case command
-    when /\APLACE (\d+, ?)(\d+, ?)([^,]+)\z/
-    when /\AMOVE\z/
-    when /\ALEFT\z/
-    when /\ARIGHT\z/
-    when /\AREPORT\z/
-    end
-  end
-
-  def place
-    table.place_entity(robot)
+  def execute(command)
+    command.execute
+    @commands.push(command)
   end
 
   def move

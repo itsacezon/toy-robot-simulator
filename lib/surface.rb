@@ -1,4 +1,4 @@
-class Table
+class Surface
   attr_reader :entities, :height, :width
 
   def initialize(height: 0, width: 0)
@@ -11,12 +11,16 @@ class Table
     @entities = []
   end
 
-  def find_entity(x, y)
-    entities.find { |entity| entity.x == x && entity.y == y }
+  def find_entity(obj)
+    entities.find do |entity|
+      entity.x == obj.x &&
+        entity.y == obj.y &&
+        entity.direction == obj.direction
+    end
   end
 
   def place_entity(entity)
-    entities.push(entity) unless find_entity(entity.x, entity.y)
+    entities.push(entity) unless find_entity(entity)
   end
 
   def remove_entity(entity)
