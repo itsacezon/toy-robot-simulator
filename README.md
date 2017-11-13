@@ -57,4 +57,4 @@ A robot that is not on the table can choose to ignore the `MOVE`, `LEFT`, `RIGHT
 - This application applies the Command pattern, so you can also add your custom commands. To do this: extend the `Command` class, add the logic for the command, then include a parser in the `Simulator` so the app can recognise the new command.
 
 ## License
-See the [LICENSE](LICENSE.md) file for license rights and limiations (MIT).
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
